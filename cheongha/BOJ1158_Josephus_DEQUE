@@ -1,0 +1,22 @@
+from collections import deque
+
+n, k = map(int, input().split())
+q = deque()
+cnt = 0
+
+for i in range(1, n+1):
+    q.append(i)
+    
+print("<", end='')
+
+while q:
+    a = q.popleft()
+    q.append(a)
+    cnt = cnt + 1
+    if cnt == k:
+        b = q.pop()
+        if len(q) == 0:
+            print(f"{a}>", end='')
+        else:
+            print(f"{a}, ", end='')
+            cnt = 0

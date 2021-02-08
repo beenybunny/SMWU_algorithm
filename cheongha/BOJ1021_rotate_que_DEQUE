@@ -1,0 +1,28 @@
+from collections import deque
+n, m = map(int, input().split())
+q = deque([i for i in range(1, n+1)])
+l = list(map(int, input().split()))
+ans = 0
+
+for i in l:
+    if q[0] == i:
+        q.popleft()
+    else:
+        cnt = 0
+        while i != q[cnt]:
+            cnt = cnt + 1
+            
+        if len(q)%2 == 0:
+            mid_idx = len(q) // 2 - 1
+        else :
+            mid_idx = len(q) // 2
+        
+        if cnt <= mid_idx:
+            q.rotate(-cnt)
+        else:
+            cnt = len(q) - cnt
+            q.rotate(cnt)
+        ans = ans + cnt
+        q.popleft()
+
+print(ans)
